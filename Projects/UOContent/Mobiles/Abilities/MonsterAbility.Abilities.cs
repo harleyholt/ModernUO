@@ -32,4 +32,6 @@ public abstract partial class MonsterAbility
     public static DrainLifeAreaAttack DrainLifeAreaAttack => new();
 
     public static MagicalBarrier MagicalBarrier => new();
+
+    public static ReflectPhysicalDamage ReflectPhysicalDamage => new();
 }

@@ -40,8 +40,7 @@ namespace Server.Mobiles
             Karma = -18000;
         }
 
-        public LadyJennifyr(Serial serial)
-            : base(serial)
+        public LadyJennifyr(Serial serial) : base(serial)
         {
         }
 
