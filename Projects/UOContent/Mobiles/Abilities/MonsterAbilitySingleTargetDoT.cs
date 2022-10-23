@@ -12,7 +12,6 @@ public abstract class MonsterAbilitySingleTargetDoT : MonsterAbilitySingleTarget
 
     protected override void OnTarget(MonsterAbilityTrigger trigger, BaseCreature source, Mobile defender)
     {
-        // defender.AddResistanceMod(GetResistanceMod(source, defender));
         _table ??= new Dictionary<Mobile, ExpireTimer>();
         _table.Remove(defender);
 
