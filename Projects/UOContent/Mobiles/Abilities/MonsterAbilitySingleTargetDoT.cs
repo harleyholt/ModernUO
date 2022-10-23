@@ -15,19 +15,29 @@ public abstract class MonsterAbilitySingleTargetDoT : MonsterAbilitySingleTarget
         _table ??= new Dictionary<Mobile, ExpireTimer>();
         _table.Remove(defender);
 
+        OnEffectAdded(source, defender);
+
         var duration = Utility.RandomMinMax(MinDelay, MaxDelay);
         var timer = _table[defender] = new ExpireTimer(this, source, defender, duration);
         timer.Start();
     }
 
+    protected abstract void OnEffectAdded(BaseCreature source, Mobile defender);
+
+    protected abstract void OnEffectRemoved(Mobile defender);
+
     protected abstract void OnTick(BaseCreature source, Mobile defender);
 
-    public void RemoveEffect(Mobile defender)
+    public bool RemoveEffect(Mobile defender)
     {
         if (_table.Remove(defender, out var timer))
         {
             timer.Stop();
+            OnEffectRemoved(defender);
+            return true;
         }
+
+        return false;
     }
 
     private class ExpireTimer : Timer
